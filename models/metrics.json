@@ -1,0 +1,224 @@
+[
+ {
+  "name": "FoldA Train=ManNai Test=PhiPhi",
+  "threshold": 0.5,
+  "val_ok": false,
+  "seed_metrics": [
+   {
+    "auc": 0.935876985352132,
+    "pr": 0.818577937400646,
+    "auc_on": 0.9973743071088204,
+    "pr_on": 0.8417818740399385
+   },
+   {
+    "auc": 0.8569002778635382,
+    "pr": 0.7018403150099098,
+    "auc_on": 0.999416512690849,
+    "pr_on": 0.9340659340659339
+   },
+   {
+    "auc": 0.9523343967616891,
+    "pr": 0.33031084804957606,
+    "auc_on": 0.9198677428765925,
+    "pr_on": 0.030762726954525664
+   },
+   {
+    "auc": 0.9913725086617955,
+    "pr": 0.8871777973538402,
+    "auc_on": 0.9988330253816979,
+    "pr_on": 0.8626373626373625
+   },
+   {
+    "auc": 0.9934050289869987,
+    "pr": 0.880189541601557,
+    "auc_on": 0.9945541184479237,
+    "pr_on": 0.35140763997906854
+   }
+  ],
+  "events": {
+   "โมเดล": {
+    "events": [
+     {
+      "start": 731,
+      "end": 809,
+      "status": "early",
+      "days": 1,
+      "coverage": 1.0
+     }
+    ],
+    "false_alarm_days": 42
+   },
+   "กฎ": {
+    "events": [
+     {
+      "start": 731,
+      "end": 809,
+      "status": "early",
+      "days": 1,
+      "coverage": 0.6835443037974683
+     }
+    ],
+    "false_alarm_days": 4
+   }
+  },
+  "artifact": {
+   "fold": "FoldA",
+   "models": [
+    {
+     "index": 0,
+     "seed": 42,
+     "file": "foldA_seed0.keras"
+    },
+    {
+     "index": 1,
+     "seed": 43,
+     "file": "foldA_seed1.keras"
+    },
+    {
+     "index": 2,
+     "seed": 44,
+     "file": "foldA_seed2.keras"
+    },
+    {
+     "index": 3,
+     "seed": 45,
+     "file": "foldA_seed3.keras"
+    },
+    {
+     "index": 4,
+     "seed": 46,
+     "file": "foldA_seed4.keras"
+    }
+   ],
+   "scaler": "scaler_FoldA.joblib",
+   "calibrator": "calibrator_FoldA.joblib",
+   "threshold": "threshold_FoldA.joblib",
+   "calibration_fitted": false,
+   "calibration_source": null,
+   "calibration_note": "validation has insufficient positive/negative classes; using uncalibrated mean and threshold 0.5",
+   "train_range": {
+    "start": "2023-04-01",
+    "end": "2025-06-12"
+   },
+   "validation_range": {
+    "start": "2025-06-13",
+    "end": "2025-12-31"
+   },
+   "test_range": {
+    "start": "2022-04-01",
+    "end": "2026-09-14"
+   }
+  }
+ },
+ {
+  "name": "FoldB Train=PhiPhi Test=ManNai",
+  "threshold": 0.5,
+  "val_ok": false,
+  "seed_metrics": [
+   {
+    "auc": 0.9987779849284808,
+    "pr": 0.9842735094629322,
+    "auc_on": 0.9990390775144139,
+    "pr_on": 0.8843537414965985
+   },
+   {
+    "auc": 0.9984646477306554,
+    "pr": 0.9783629523411158,
+    "auc_on": 0.9974375400384369,
+    "pr_on": 0.7658119658119658
+   },
+   {
+    "auc": 0.9985743157498943,
+    "pr": 0.9842856896149952,
+    "auc_on": 0.9998398462524024,
+    "pr_on": 0.982142857142857
+   },
+   {
+    "auc": 0.9997336633818484,
+    "pr": 0.9966757358510177,
+    "auc_on": 0.9991992312620116,
+    "pr_on": 0.9214285714285713
+   },
+   {
+    "auc": 0.999420326184023,
+    "pr": 0.99263197185247,
+    "auc_on": 0.9998398462524024,
+    "pr_on": 0.982142857142857
+   }
+  ],
+  "events": {
+   "โมเดล": {
+    "events": [
+     {
+      "start": 12,
+      "end": 82,
+      "status": "late",
+      "days": 7,
+      "coverage": 0.8873239436619719
+     }
+    ],
+    "false_alarm_days": 1
+   },
+   "กฎ": {
+    "events": [
+     {
+      "start": 12,
+      "end": 82,
+      "status": "late",
+      "days": 3,
+      "coverage": 0.5492957746478874
+     }
+    ],
+    "false_alarm_days": 0
+   }
+  },
+  "artifact": {
+   "fold": "FoldB",
+   "models": [
+    {
+     "index": 0,
+     "seed": 42,
+     "file": "foldB_seed0.keras"
+    },
+    {
+     "index": 1,
+     "seed": 43,
+     "file": "foldB_seed1.keras"
+    },
+    {
+     "index": 2,
+     "seed": 44,
+     "file": "foldB_seed2.keras"
+    },
+    {
+     "index": 3,
+     "seed": 45,
+     "file": "foldB_seed3.keras"
+    },
+    {
+     "index": 4,
+     "seed": 46,
+     "file": "foldB_seed4.keras"
+    }
+   ],
+   "scaler": "scaler_FoldB.joblib",
+   "calibrator": "calibrator_FoldB.joblib",
+   "threshold": "threshold_FoldB.joblib",
+   "calibration_fitted": false,
+   "calibration_source": null,
+   "calibration_note": "validation has insufficient positive/negative classes; using uncalibrated mean and threshold 0.5",
+   "train_range": {
+    "start": "2022-04-01",
+    "end": "2025-10-23"
+   },
+   "validation_range": {
+    "start": "2025-10-24",
+    "end": "2026-09-14"
+   },
+   "test_range": {
+    "start": "2023-04-01",
+    "end": "2025-12-31"
+   }
+  }
+ }
+]

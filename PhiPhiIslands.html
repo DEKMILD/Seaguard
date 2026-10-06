@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SeaGuard — Phi Phi Islands Forecast</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { 'ocean-dark': '#0c3e4d' } } }
+    };
+  </script>
+
+  <link rel="stylesheet" href="style.css">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+
+<body data-island="phi_phi" class="relative min-h-screen bg-slate-950 text-slate-100 selection:bg-cyan-500 selection:text-black">
+
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <header
+    class="glass-nav sticky top-0 z-50 transition-all duration-300 border-b border-cyan-500/20 bg-slate-950/80 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+
+      <!-- Brand Logo -->
+      <a href="#home" class="brand flex items-center gap-3 group">
+        <div
+          class="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-500/20 to-teal-400/10 border border-cyan-400/30 group-hover:border-cyan-400 transition-all">
+          <img src="photo/logo.png" alt="SeaGuard Logo" class="w-12 h-12 object-contain"
+            onerror="this.src='https://via.placeholder.com/48?text=SG'">
+        </div>
+        <div class="flex flex-col">
+          <span
+            class="brand-name font-bold text-xl tracking-tight text-white group-hover:text-cyan-300 transition-colors">SeaGuard</span>
+          <span class="sg-brand-subtitle text-[10px] tracking-widest text-cyan-400/80 uppercase font-medium"> Multi-Temporal Satellite AI
+            for Coral Bleaching Forecast</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+        <a href="index.html"
+          class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Home</a>
+        <a href="KohMunNai.html"
+          class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Koh
+          Mun Nai</a>
+        <a href="PhiPhiIslands.html" aria-current="page"
+          class="px-4 py-2 rounded-lg text-sm font-medium text-cyan-300 bg-cyan-500/10 border border-cyan-400/30 transition-all">Phi
+          Phi Islands</a>
+      </nav>
+
+      <button type="button" class="sg-lang-toggle shrink-0" data-lang-toggle aria-label="Switch to English">EN</button>
+
+      <!-- Mobile Navigation Toggle -->
+      <button type="button" id="mobileNavToggle"
+        class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all"
+        aria-expanded="false" aria-controls="mobileNavPanel" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars text-lg" id="mobileNavIcon"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Navigation Panel -->
+    <div id="mobileNavPanel" class="md:hidden max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out">
+      <nav class="flex flex-col px-4 sm:px-6 gap-1 pb-4">
+        <a href="index.html"
+          class="px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Home</a>
+        <a href="KohMunNai.html"
+          class="px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Koh
+          Mun Nai</a>
+        <a href="PhiPhiIslands.html" aria-current="page"
+          class="px-4 py-2.5 rounded-lg text-sm font-medium text-cyan-300 bg-cyan-500/10 border border-cyan-400/30 transition-all">Phi
+          Phi Islands</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+
+    <!-- ============ HERO SECTION ============ -->
+    <section class="ocean-scene relative pt-8 pb-16 lg:pt-16 lg:pb-24 caustics-overlay" id="home">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="hero-wrap relative">
+          <div
+            class="panel hero-panel glass-card rounded-3xl p-6 sm:p-10 lg:p-14 overflow-hidden relative border border-cyan-500/20 bg-slate-900/60">
+
+            <div class="hero-copy relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              <!-- Left Text Column -->
+              <div class="hero-text lg:col-span-7 space-y-6">
+                <div
+                  class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold tracking-wide uppercase">
+                  <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                  <span>Phi Phi Islands, Krabi Province</span>
+                </div>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-none">
+                  Phi Phi Islands
+                </h1>
+
+                <p class="text-slate-300 text-base sm:text-lg leading-relaxed font-normal">
+                  Phi Phi Islands are part of Hat Noppharat Thara - Mu Ko Phi Phi National Park. Originally, sea nomads
+                  referred to the archipelago as “Pulau Piapi,” where “Pulau” means island and “Piapi” refers to a type
+                  of coastal vegetation similar to mangroves. Later, it came to be known as the “Pi Pi Tree,” which
+                  eventually evolved phonetically into “Phi Phi. ” It has earned the title "The Kingdom of Underwater
+                  Flora."
+                </p>
+
+                <div class="pt-2 flex flex-wrap gap-4">
+                  <a href="#simulation-1"
+                    class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-400 to-teal-400 text-slate-950 hover:shadow-lg hover:shadow-cyan-400/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0 flex items-center gap-2">
+                    <i class="fa-solid fa-temperature-arrow-up"></i>
+                    <span>Bleaching Simulation</span>
+                  </a>
+                  <a href="#simulation-2"
+                    class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-white/5 border border-white/15 text-white hover:bg-white/10 hover:border-cyan-400/40 transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-chart-line text-cyan-400"></i>
+                    <span>DHW projection</span>
+                  </a>
+                </div>
+
+                <!-- Feature Metrics -->
+                <div class="pt-4 grid grid-cols-3 gap-4 border-t border-white/10">
+                  <div>
+                    <span class="block text-xl font-bold text-cyan-300" id="stat-state-date">--</span>
+                    <span class="text-xs text-slate-400">อัปเดตข้อมูลล่าสุด</span>
+                  </div>
+                  <div>
+                    <span id="stat-mmm" class="block text-xl font-bold text-teal-300">-- °C</span>
+                    <span class="text-xs text-slate-400">MMM Threshold</span>
+                  </div>
+                  <div>
+                    <span class="block text-xl font-bold text-emerald-300">Krabi</span>
+                    <span class="text-xs text-slate-400">Andaman Sea</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Image Column -->
+              <div class="lg:col-span-5 flex justify-center items-center">
+                <div class="relative w-full max-w-md aspect-square flex items-center justify-center p-4">
+                  <div class="absolute inset-0 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                  <div
+                    class="hero-image-box relative w-full h-full flex items-center justify-center rounded-2xl overflow-hidden glass-card p-6 border border-cyan-400/20 shadow-2xl bg-slate-900/80">
+                    <img src="photo/korPP.png" alt="Phi Phi Islands Marine Life"
+                      class="max-h-72 w-auto object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.5)] animate-float"
+                      onerror="this.src='https://via.placeholder.com/300?text=Phi+Phi+Islands'" />
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ============ STAT BAND ============ -->
+    <section
+      class="stat-band bg-gradient-to-r from-teal-950 via-ocean-dark to-teal-950 border-y border-cyan-500/20 py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <!-- Glow background line -->
+      <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400 to-transparent"></div>
+
+      <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-6">
+
+        <!-- Left Warning Text & Icon -->
+        <div class="flex items-center gap-5">
+          <div
+            class="stat-icon flex-none w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-red-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-lg shadow-amber-500/10">
+            <svg width="40" height="40" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true">
+              <path d="M32 6c-1 8-2 12-6 16 5-1 8-1 11 1 1-6 3-10-5-17z" fill="#f59e0b" />
+              <path d="M32 22v10" stroke="#f59e0b" stroke-width="3" stroke-linecap="round" />
+              <ellipse cx="32" cy="38" rx="20" ry="8" fill="#f2f8f7" opacity="0.9" />
+              <path d="M8 50c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0" stroke="#00f2fe" stroke-width="2.5" fill="none"
+                stroke-linecap="round" />
+              <path d="M10 57c4-4 8-4 12 0s8 4 12 0 8-4 12 0 8 4 12 0" stroke="#00f2fe" stroke-width="2" fill="none"
+                stroke-linecap="round" opacity="0.6" />
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2 mb-1">
+              <span class="inline-block w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+              <span class="text-xs font-bold text-cyan-400 uppercase tracking-wider">NOAA CRW Heat-Stress Criteria</span>
+            </div>
+            <p class="font-poppins font-bold text-xl sm:text-2xl text-white tracking-wide">
+              Alert levels use current HotSpot together with accumulated DHW.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ============ SCENE 2 : SIMULATION 1 - CORAL BLEACHING SIMULATOR ============ -->
+    <section class="ocean-scene deep py-16 lg:py-24 relative" id="simulation-1">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div
+          class="panel hero-panel glass-card rounded-3xl p-6 sm:p-10 lg:p-12 border border-cyan-500/20 relative overflow-hidden">
+
+          <!-- Background image -->
+          <div
+            class="absolute inset-0 z-0 opacity-20 bg-cover bg-center bg-[url('photo/Dolphin.jpg')] pointer-events-none">
+          </div>
+
+          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+
+            <!-- Simulation Intro Copy (Left) -->
+            <div class="hero-copy lg:col-span-5 space-y-5">
+              <div
+                class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold">
+                <i class="fa-solid fa-flask"></i> Simulation Module 01
+              </div>
+
+              <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+                How Sea Temperature Affects Coral
+              </h2>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                Coral reefs are highly sensitive to changes in sea surface temperature. When water temperatures rise
+                above the normal range,
+                corals become stressed and may expel the symbiotic algae that provide them with energy and color.
+              </p>
+
+              <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                As temperature stress increases, coral bleaching becomes more severe.
+                Prolonged exposure to high temperatures can weaken corals and increase the risk of mortality.
+              </p>
+
+              <div class="p-4 rounded-2xl bg-slate-900/80 border border-cyan-500/20 space-y-3">
+                <div class="flex justify-between items-center text-xs text-slate-300 font-medium">
+                  <span>ระดับความเครียดจากความร้อน · ภาพประกอบตามสูตร</span>
+                  <span id="bleachMeterText" class="font-bold text-slate-300">รอผลจาก API</span>
+                </div>
+                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden p-0.5 border border-white/10">
+                  <div id="bleachMeterBar"
+                    class="bg-gradient-to-r from-emerald-400 via-amber-400 to-red-500 h-full rounded-full transition-all duration-500 w-0">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Interactive Temperature Controller Widget (Right) -->
+            <div class="lg:col-span-7">
+              <div
+                class="glass-card rounded-2xl p-6 sm:p-8 border border-cyan-400/30 bg-slate-950/70 shadow-2xl relative">
+
+                <div
+                  class="flex flex-col sm:flex-row sm:flex-wrap justify-between items-start sm:items-center gap-4 pb-6 border-b border-white/10">
+                  <div>
+                    <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                      <i class="fa-solid fa-sliders text-cyan-400"></i> Interactive Water Temperature Controls
+                    </h3>
+                    <p class="text-xs text-slate-400">ปรับ SST สมมติ เพื่อดู DHW จากสูตรและสีประกอบ ไม่ใช่ภาพปะการังจริง</p>
+                  </div>
+
+                  <div class="flex-none px-4 py-2 rounded-xl bg-slate-900 border border-cyan-500/30 flex items-center gap-3 whitespace-nowrap">
+                    <span class="text-xs text-slate-400 uppercase font-medium">Water Temp</span>
+                    <span id="tempDisplay" class="text-2xl font-black text-cyan-400 font-poppins whitespace-nowrap">31.5°C</span>
+                  </div>
+                </div>
+
+                <!-- Temperature Range Input -->
+                <div class="py-6 space-y-3">
+                  <div class="flex justify-between text-xs font-semibold text-slate-400">
+                    <span class="text-emerald-400">26.0°C (ขอบตัวเลื่อน)</span>
+                    <span id="stress-threshold-label" class="text-amber-400">--°C (MMM + 1°C)</span>
+                    <span class="text-red-400">34.0°C (ขอบตัวเลื่อน)</span>
+                  </div>
+
+                  <input type="range" id="tempSlider" min="26" max="34" step="0.1" value="31.5" class="w-full"
+                    aria-label="Temperature slider">
+
+                  <div class="flex justify-between text-[11px] text-slate-500">
+                    <span>Healthy Zooxanthellae</span>
+                    <span>Algae Expulsion</span>
+                    <span>Coral Skeleton Exposure</span>
+                  </div>
+                </div>
+
+                <!-- Live Dynamic Interactive SVG Visualizer -->
+                <div
+                  class="relative mt-2 p-6 rounded-2xl bg-gradient-to-b from-ocean-dark to-slate-950 border border-white/10 flex flex-col items-center justify-center min-h-[220px]">
+
+                  <!-- Water status banner overlay -->
+                  <div id="coralStatusBadge"
+                    class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold bg-red-500/20 text-red-300 border border-red-500/40">
+                    STATUS: รอผลจาก API
+                  </div>
+                  <!-- กล่องตัวเลข DHW -->
+                  <div
+                    class="grid grid-cols-2 gap-3 p-2.5 rounded-xl bg-slate-950/60 border border-slate-800/80 self-end">
+                    <div>
+                      <p class="text-[9px] text-slate-400">DHW ปัจจุบัน (<span id="sim-state-date">--</span>)</p>
+                      <p id="sim-dhw-now" class="text-lg font-bold text-slate-200 mt-0.5">--</p>
+                      <p class="text-[9px] text-slate-500">°C-weeks</p>
+                    </div>
+                    <div>
+                      <p class="text-[9px] text-slate-400">DHW จากสูตร (<span id="sim-horizon-label">7 วัน</span>)</p>
+                      <p id="sim-dhw-projected" class="text-lg font-bold text-amber-400 mt-0.5">--</p>
+                      <p id="sim-dhw-delta" class="text-[9px] text-amber-400/80">--</p>
+                    </div>
+                  </div>
+
+                  <!-- Dynamic SVG Coral reef canvas -->
+                  <div id="sim-coralSvgWrapper"
+                    class="w-full max-w-xs h-40 flex items-center justify-center transition-all duration-500">
+                    <svg id="sim-coralSvg" viewBox="0 0 200 120"
+                      class="w-full h-full drop-shadow-lg transition-all duration-500">
+                      <!-- Base seabed -->
+                      <path d="M10 110 Q 50 100 100 110 T 190 110 L 200 120 L 0 120 Z" fill="#0f2b38" />
+                      <!-- Coral Branch 1 -->
+                      <path id="sim-coralBranch1"
+                        d="M40 105 C 30 80, 20 60, 30 40 C 35 30, 45 40, 42 55 C 48 35, 60 30, 58 45 C 55 65, 50 85, 55 105 Z"
+                        fill="#ffffff" class="transition-colors duration-500" />
+                      <!-- Coral Branch 2 (Center Big) -->
+                      <path id="sim-coralBranch2"
+                        d="M85 108 C 75 70, 65 40, 80 20 C 90 10, 100 25, 95 45 C 105 20, 120 15, 118 40 C 115 60, 125 30, 135 45 C 130 70, 110 90, 105 108 Z"
+                        fill="#ffffff" class="transition-colors duration-500" />
+                      <!-- Coral Branch 3 -->
+                      <path id="sim-coralBranch3"
+                        d="M140 105 C 135 80, 145 60, 155 45 C 160 38, 168 50, 160 65 C 170 50, 180 55, 172 75 C 165 90, 155 100, 150 105 Z"
+                        fill="#ffffff" class="transition-colors duration-500" />
+                    </svg>
+                  </div>
+
+                  <p id="sim-coralImpactText" class="text-xs text-center text-slate-300 mt-2">
+                    รอผลสถานการณ์จำลองจาก API · สีปะการังเป็นภาพประกอบ
+                  </p>
+
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    </div>
+
+    <!-- Interactive Chart Section -->
+    <!-- ✅ วางบล็อก AI Prediction แบบ 2 กราฟแทนที่ -->
+    <section class="ocean-scene deep py-12 lg:py-16 relative" id="simulation-2">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="p-6 rounded-3xl bg-[#09151e] border border-cyan-900/40 space-y-6 text-slate-200 mt-6">
+
+          <!-- Header -->
+          <div class="flex justify-between items-start">
+            <div>
+              <h2 class="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                 แนวโน้ม DHW <span id="prediction-horizon-text">7 วันข้างหน้า</span>
+              </h2>
+              <p class="text-xs text-amber-300 mt-1">คำนวณจากสูตร · ไม่ใช่ AI</p>
+            </div>
+            <button onclick="fetchSimulationData()"
+              class="px-3 py-1.5 rounded-xl bg-cyan-500/20 hover:bg-cyan-500/30 border border-cyan-400/40 text-cyan-300 font-bold text-xs transition-all flex items-center gap-2 shadow-lg">
+              🔄 โหลดใหม่
+            </button>
+          </div>
+
+
+          <!-- Dual Chart (SST & DHW) -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+
+            <!-- กราฟซ้าย: SST forecast (ใช้ id="sstForecastChart") -->
+            <div class="p-4 rounded-2xl bg-[#0c1b26] border border-cyan-900/30">
+              <div class="flex justify-center items-center gap-2 mb-2">
+                <span class="w-5 h-1 bg-cyan-400 inline-block rounded-full"></span>
+                 <span class="text-xs font-bold text-slate-300">SST ประมาณการ</span>
+              </div>
+              <div class="relative h-52 w-full">
+                <canvas id="sstForecastChart"></canvas>
+              </div>
+            </div>
+
+            <!-- กราฟขวา: DHW forecast (ใช้ id="dhwForecastChart") -->
+            <div class="p-4 rounded-2xl bg-[#0c1b26] border border-cyan-900/30">
+              <div class="flex justify-center items-center gap-2 mb-2">
+                <span class="w-5 h-1 bg-amber-500 inline-block rounded-full"></span>
+                 <span class="text-xs font-bold text-slate-300">DHW ประมาณการ</span>
+              </div>
+              <div class="relative h-52 w-full">
+                <canvas id="dhwForecastChart"></canvas>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- Dynamic Result Card & SVG Visualizer (Right) -->
+        <div class="lg:col-span-6">
+          <div id="alert-card"
+            class="glass-card rounded-2xl p-6 border transition-all bg-red-950/30 border-red-500/40 text-red-200 shadow-2xl relative">
+
+            <!-- Alert Header -->
+            <div class="flex justify-between items-start mb-6">
+              <div>
+                <h3 id="alert-title"
+                  class="inline-flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider px-3 py-1.5 rounded-lg bg-cyan-950/80 text-cyan-300 border border-cyan-500/30 shadow-inner">
+                  <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                  เกาะพีพี (PhiPhi Islands)
+                </h3>
+              </div>
+              <div id="alert-icon"
+                class="text-3xl sm:text-4xl bg-gradient-to-br from-red-500/20 to-red-500/5 p-3.5 rounded-2xl border border-red-500/30 shadow-lg shadow-red-950/50 backdrop-blur-sm">
+                🚨
+              </div>
+            </div>
+
+            <!-- DHW Metrics Box -->
+            <div
+              class="grid grid-cols-2 gap-4 my-6 bg-slate-900/90 p-4.5 rounded-2xl border border-slate-800/80 shadow-xl backdrop-blur-md">
+              <div class="relative pl-3 border-l-2 border-slate-700/60">
+                <p class="text-xs font-medium text-slate-400">DHW ปัจจุบัน (<span id="state-date-label"
+                    class="text-slate-300">--</span>)</p>
+                <p id="dhw-now" class="text-2xl sm:text-3xl font-black text-slate-100 mt-1 tracking-tight">--</p>
+                <p class="text-[10px] font-semibold tracking-wide text-slate-500 uppercase mt-0.5">°C-weeks</p>
+              </div>
+              <div class="relative pl-3 border-l-2 border-red-500/40 bg-red-950/10 p-2 rounded-r-xl">
+                 <p class="text-xs font-medium text-red-300/90">DHW จากสูตร (<span id="horizon-label"
+                    class="text-red-300 font-semibold">7 วัน</span>)</p>
+                <p id="dhw-projected" class="text-2xl sm:text-3xl font-black text-red-400 mt-1 tracking-tight">--
+                </p>
+                <p id="dhw-delta"
+                  class="text-[11px] font-semibold text-red-400/90 mt-0.5 inline-flex items-center gap-0.5">--</p>
+              </div>
+            </div>
+
+            <!-- Dynamic Visualizer Canvas -->
+            <div
+              class="relative mt-2 p-5 sm:p-6 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950 border border-white/10 flex flex-col items-center justify-center min-h-[200px] shadow-2xl overflow-hidden group">
+              <!-- Glow Effect Background -->
+              <div
+                class="absolute inset-0 bg-cyan-500/5 opacity-40 group-hover:opacity-70 transition-opacity duration-700 pointer-events-none blur-2xl">
+              </div>
+
+              <div id="coralSvgWrapper"
+                class="w-full max-w-xs h-36 flex items-center justify-center transition-all duration-500 z-10">
+                <svg id="coralSvg" viewBox="0 0 200 120"
+                  class="w-full h-full drop-shadow-[0_10px_8px_rgba(0,0,0,0.5)] transition-all duration-500">
+                  <path d="M10 110 Q 50 100 100 110 T 190 110 L 200 120 L 0 120 Z" fill="#0f2b38" />
+                  <path id="coralBranch1"
+                    d="M40 105 C 30 80, 20 60, 30 40 C 35 30, 45 40, 42 55 C 48 35, 60 30, 58 45 C 55 65, 50 85, 55 105 Z"
+                    fill="#ef4444" class="transition-colors duration-500" />
+                  <path id="coralBranch2"
+                    d="M85 108 C 75 70, 65 40, 80 20 C 90 10, 100 25, 95 45 C 105 20, 120 15, 118 40 C 115 60, 125 30, 135 45 C 130 70, 110 90, 105 108 Z"
+                    fill="#ef4444" class="transition-colors duration-500" />
+                  <path id="coralBranch3"
+                    d="M140 105 C 135 80, 145 60, 155 45 C 160 38, 168 50, 160 65 C 170 50, 180 55, 172 75 C 165 90, 155 100, 150 105 Z"
+                    fill="#ef4444" class="transition-colors duration-500" />
+                </svg>
+              </div>
+              <p id="coralImpactText"
+                class="text-xs sm:text-sm text-center text-slate-300 mt-3 font-medium z-10 tracking-wide bg-slate-900/60 px-3 py-1 rounded-full border border-slate-800">
+                กำลังคำนวณสถานการณ์จำลอง...
+              </p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+      <section id="ai-risk-root" class="ocean-scene deep relative" aria-label="AI risk score"></section>
+
+  </main>
+
+      <!-- ============ FOOTER ============ -->
+      <footer class="glass-nav border-t border-cyan-500/20 py-10 text-center relative z-10 bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+          <div class="flex items-center justify-center gap-3">
+            <div
+              class="w-8 h-8 rounded-lg bg-cyan-500/20 border border-cyan-400/40 flex items-center justify-center text-cyan-400 font-bold text-sm">
+              SG
+            </div>
+            <span class="font-poppins font-bold text-lg text-white">SeaGuard</span>
+          </div>
+          <p class="text-slate-400 text-xs sm:text-sm max-w-xl mx-auto">
+            SeaGuard &middot; Marine &amp; Coral Reef Monitoring, Phi Phi Islands, Krabi Province
+          </p>
+        </div>
+      </footer>
+
+      <script src="my-chart.js"></script>
+      <script src="risk.js"></script>
+      <!-- Embedded API Controller Script -->
+      <script>
+        const ISLAND = "phi_phi";
+        const selectedDays = 7;
+        let appConfig = null;
+
+        async function loadConfig() {
+          const res = await fetch('/config');
+          if (!res.ok) throw new Error(`Config API status ${res.status}`);
+          appConfig = await res.json();
+        }
+
+        function updateBleachMeter(data) {
+          const styles = {
+            no_stress: { pct: 10, color: '#34d399', rgb: '16,185,129' },
+            watch: { pct: 25, color: '#facc15', rgb: '234,179,8' },
+            warning: { pct: 45, color: '#fbbf24', rgb: '245,158,11' },
+            alert_level_1: { pct: 70, color: '#f97316', rgb: '249,115,22' },
+            alert_level_2: { pct: 100, color: '#f87171', rgb: '239,68,68' }
+          };
+          const current = styles[data.level] || styles.no_stress;
+          const badge = document.getElementById('coralStatusBadge');
+          if (badge) {
+            badge.innerText = `STATUS: ${data.level_th}`;
+            badge.style.color = current.color;
+            badge.style.backgroundColor = `rgba(${current.rgb}, 0.2)`;
+            badge.style.borderColor = `rgba(${current.rgb}, 0.4)`;
+          }
+          const text = document.getElementById('bleachMeterText');
+          const bar = document.getElementById('bleachMeterBar');
+          if (text) {
+            text.innerText = data.level_th;
+            text.style.color = current.color;
+          }
+          if (bar) {
+            bar.style.width = `${current.pct}%`;
+            bar.style.backgroundSize = `${10000 / current.pct}% 100%`;
+            bar.style.backgroundRepeat = 'no-repeat';
+          }
+        }
+
+        function showOfflineState(error) {
+          console.error("ไม่สามารถเชื่อมต่อ API ได้", error);
+          for (const id of ['dhw-now', 'dhw-projected', 'dhw-delta', 'sim-dhw-now', 'sim-dhw-projected', 'sim-dhw-delta', 'state-date-label', 'sim-state-date', 'stat-state-date', 'stat-mmm']) {
+            document.getElementById(id).textContent = '--';
+          }
+          document.getElementById('alert-title').innerText = 'OFFLINE — ไม่สามารถคำนวณได้';
+          document.getElementById('alert-icon').innerText = '📡';
+          document.getElementById('coralStatusBadge').innerText = 'STATUS: OFFLINE';
+          document.getElementById('bleachMeterText').innerText = 'OFFLINE';
+          document.getElementById('bleachMeterBar').style.width = '0%';
+          document.getElementById('sim-coralImpactText').innerText = 'ไม่มีผลจำลองจาก API';
+          document.getElementById('coralImpactText').innerText = 'ไม่มีการคำนวณฝั่งเว็บ กรุณาเปิด SeaGuard API แล้วลองใหม่';
+          clearDualCharts();
+        }
+
+        async function fetchSimulationData() {
+          const slider = document.getElementById('tempSlider');
+          const sstVal = parseFloat(slider.value);
+
+          document.getElementById('tempDisplay').innerText = `${sstVal.toFixed(1)}°C`;
+
+          try {
+            const res = await fetch('/simulate', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ island: ISLAND, sst_value: sstVal, days: selectedDays })
+            });
+
+            if (res.ok) {
+              const data = await res.json();
+              updateUI(data);
+            } else {
+              throw new Error(`API status ${res.status}`);
+            }
+          } catch (err) {
+            showOfflineState(err);
+          }
+        }
+
+        function updateUI(data) {
+          document.getElementById('stat-mmm').innerText = `${Number(data.mmm_c).toFixed(1)} °C`;
+          document.getElementById('stress-threshold-label').innerText = `${(Number(data.mmm_c) + appConfig.hotspot_accumulation_min_c).toFixed(1)}°C (MMM + 1°C)`;
+          document.getElementById('state-date-label').innerText = data.state_date || '--';
+          document.getElementById('stat-state-date').innerText = data.state_date || '--';
+          document.getElementById('sim-state-date').innerText = data.state_date || '--';
+          document.getElementById('horizon-label').innerText = `${data.days} วัน`;
+          document.getElementById('sim-horizon-label').innerText = `${data.days} วัน`;
+          document.getElementById('dhw-now').innerText = Number(data.dhw_now).toFixed(2);
+          document.getElementById('sim-dhw-now').innerText = Number(data.dhw_now).toFixed(2);
+          document.getElementById('dhw-projected').innerText = Number(data.dhw_projected).toFixed(2);
+          document.getElementById('sim-dhw-projected').innerText = Number(data.dhw_projected).toFixed(2);
+
+          const diff = data.dhw_projected - data.dhw_now;
+          document.getElementById('dhw-delta').innerText = diff >= 0 ? `(+${diff.toFixed(2)} °C-weeks)` : `(${diff.toFixed(2)} °C-weeks)`;
+          document.getElementById('sim-dhw-delta').innerText = diff >= 0 ? `(+${diff.toFixed(2)} °C-weeks)` : `(${diff.toFixed(2)} °C-weeks)`;
+
+          const card = document.getElementById('alert-card');
+          const title = document.getElementById('alert-title');
+          const icon = document.getElementById('alert-icon');
+          const dhwProjText = document.getElementById('dhw-projected');
+          const b1 = document.getElementById('coralBranch1');
+          const b2 = document.getElementById('coralBranch2');
+          const b3 = document.getElementById('coralBranch3');
+          const impactText = document.getElementById('coralImpactText');
+
+          const levels = {
+            alert_level_2: { title: "NOAA Bleaching Alert Level 2", icon: "🚨", color: "#ef4444", class: "bg-red-950/40 border-red-500/50 text-red-200", impact: `HotSpot ${data.hotspot_c.toFixed(2)} °C และ DHW ${data.dhw_projected.toFixed(2)} °C-weeks` },
+            alert_level_1: { title: "NOAA Bleaching Alert Level 1", icon: "🔴", color: "#f97316", class: "bg-orange-950/40 border-orange-500/50 text-orange-200", impact: `HotSpot ${data.hotspot_c.toFixed(2)} °C และ DHW ${data.dhw_projected.toFixed(2)} °C-weeks` },
+            warning: { title: "NOAA Bleaching Warning", icon: "⚠️", color: "#f59e0b", class: "bg-amber-950/40 border-amber-500/50 text-amber-200", impact: `HotSpot ${data.hotspot_c.toFixed(2)} °C; DHW ยังต่ำกว่า Alert Level 1` },
+            watch: { title: "NOAA Bleaching Watch", icon: "👁️", color: "#eab308", class: "bg-yellow-950/40 border-yellow-500/50 text-yellow-200", impact: `HotSpot ${data.hotspot_c.toFixed(2)} °C ยังต่ำกว่าเกณฑ์สะสม 1 °C` },
+            no_stress: { title: "NOAA No Stress", icon: "🛡️", color: "#10b981", class: "bg-emerald-950/40 border-emerald-500/50 text-emerald-200", impact: "HotSpot ไม่เกิน 0 °C" }
+          };
+
+          const cur = levels[data.level] || levels.no_stress;
+
+          card.className = `glass-card rounded-2xl p-6 border transition-all shadow-2xl relative ${cur.class}`;
+          title.innerText = data.is_fallback ? `${cur.title} — offline estimate` : cur.title;
+          icon.innerText = cur.icon;
+          dhwProjText.className = `text-lg font-bold mt-0.5`;
+          impactText.innerText = cur.impact;
+
+          if (b1) b1.setAttribute('fill', cur.color);
+          if (b2) b2.setAttribute('fill', cur.color);
+          if (b3) b3.setAttribute('fill', cur.color);
+          ['sim-coralBranch1', 'sim-coralBranch2', 'sim-coralBranch3'].forEach(id => {
+            document.getElementById(id)?.setAttribute('fill', cur.color);
+          });
+          document.getElementById('sim-coralImpactText').innerText = cur.impact;
+          updateBleachMeter(data);
+          if (data.dates && data.sst_forecast && data.dhw_forecast) {
+            renderDualCharts(data.dates, data.sst_forecast, data.dhw_forecast);
+          }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+          const slider = document.getElementById('tempSlider');
+          if (slider) {
+            slider.addEventListener('input', fetchSimulationData);
+            slider.addEventListener('change', fetchSimulationData);
+          }
+
+          loadConfig().then(fetchSimulationData).catch(showOfflineState);
+        });
+      </script>
+      <script>
+        document.addEventListener("DOMContentLoaded", () => {
+          const dates = [];
+
+          // --- 1. วาดกราฟ SST ---
+          const ctxSST = document.getElementById('sstForecastChart');
+          if (ctxSST) {
+            new Chart(ctxSST, {
+              type: 'line',
+              data: {
+                labels: dates,
+                datasets: [{
+                  data: [],
+                  borderColor: '#22d3ee',
+                  borderWidth: 3,
+                  tension: 0.4,
+                  pointBackgroundColor: '#ffffff',
+                  pointRadius: 4
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                  x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                  y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                }
+              }
+            });
+          }
+
+          // --- 2. วาดกราฟ DHW ---
+          const ctxDHW = document.getElementById('dhwForecastChart');
+          if (ctxDHW) {
+            new Chart(ctxDHW, {
+              type: 'line',
+              data: {
+                labels: dates,
+                datasets: [{
+                  data: [],
+                  borderColor: '#f59e0b',
+                  backgroundColor: 'rgba(245, 158, 11, 0.2)',
+                  fill: true,
+                  borderWidth: 3,
+                  tension: 0.3,
+                  pointBackgroundColor: '#ffffff',
+                  pointRadius: 4
+                }]
+              },
+              options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                  x: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } },
+                  y: { ticks: { color: '#94a3b8' }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                }
+              }
+            });
+          }
+        });
+      </script>
+
+
+      <!-- ==================== MOBILE NAVBAR TOGGLE ==================== -->
+      <script>
+        (function () {
+          const btn = document.getElementById('mobileNavToggle');
+          const panel = document.getElementById('mobileNavPanel');
+          const icon = document.getElementById('mobileNavIcon');
+          if (!btn || !panel) return;
+
+          function setOpen(open) {
+            panel.style.maxHeight = open ? panel.scrollHeight + 'px' : '0px';
+            btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+            icon.classList.toggle('fa-bars', !open);
+            icon.classList.toggle('fa-xmark', open);
+          }
+
+          btn.addEventListener('click', function () {
+            setOpen(btn.getAttribute('aria-expanded') !== 'true');
+          });
+
+          // ปิดเมนูเมื่อกดลิงก์ในเมนู
+          panel.querySelectorAll('a').forEach(function (a) {
+            a.addEventListener('click', function () { setOpen(false); });
+          });
+
+          // ปิดเมนูเมื่อกดนอกพื้นที่ navbar หรือกด Esc
+          document.addEventListener('click', function (e) {
+            if (!btn.contains(e.target) && !panel.contains(e.target)) setOpen(false);
+          });
+          document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') setOpen(false);
+          });
+
+          // รีเซ็ตเมื่อขยายเป็นหน้าจอ desktop
+          window.addEventListener('resize', function () {
+            if (window.innerWidth >= 768) setOpen(false);
+          });
+        })();
+      </script>
+      <script src="i18n.js"></script>
+
+</body>
+
+</html>

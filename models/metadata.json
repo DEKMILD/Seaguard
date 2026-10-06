@@ -1,0 +1,126 @@
+{
+ "feature_order": [
+  "hotspot",
+  "anom",
+  "dhw_hat",
+  "dhw_hat_d7",
+  "blue",
+  "green",
+  "red",
+  "nir"
+ ],
+ "window_days": 30,
+ "horizon_days": 7,
+ "target": "P(DHW at t+7 >= 4)",
+ "seeds": [
+  42,
+  43,
+  44,
+  45,
+  46
+ ],
+ "versions": {
+  "tensorflow": "2.21.0",
+  "keras": "3.15.1",
+  "scikit_learn": "1.9.0",
+  "joblib": "1.6.0"
+ },
+ "folds": {
+  "FoldA": {
+   "fold": "FoldA",
+   "models": [
+    {
+     "index": 0,
+     "seed": 42,
+     "file": "foldA_seed0.keras"
+    },
+    {
+     "index": 1,
+     "seed": 43,
+     "file": "foldA_seed1.keras"
+    },
+    {
+     "index": 2,
+     "seed": 44,
+     "file": "foldA_seed2.keras"
+    },
+    {
+     "index": 3,
+     "seed": 45,
+     "file": "foldA_seed3.keras"
+    },
+    {
+     "index": 4,
+     "seed": 46,
+     "file": "foldA_seed4.keras"
+    }
+   ],
+   "scaler": "scaler_FoldA.joblib",
+   "calibrator": "calibrator_FoldA.joblib",
+   "threshold": "threshold_FoldA.joblib",
+   "calibration_fitted": false,
+   "calibration_source": null,
+   "calibration_note": "validation has insufficient positive/negative classes; using uncalibrated mean and threshold 0.5",
+   "train_range": {
+    "start": "2023-04-01",
+    "end": "2025-06-12"
+   },
+   "validation_range": {
+    "start": "2025-06-13",
+    "end": "2025-12-31"
+   },
+   "test_range": {
+    "start": "2022-04-01",
+    "end": "2026-09-14"
+   }
+  },
+  "FoldB": {
+   "fold": "FoldB",
+   "models": [
+    {
+     "index": 0,
+     "seed": 42,
+     "file": "foldB_seed0.keras"
+    },
+    {
+     "index": 1,
+     "seed": 43,
+     "file": "foldB_seed1.keras"
+    },
+    {
+     "index": 2,
+     "seed": 44,
+     "file": "foldB_seed2.keras"
+    },
+    {
+     "index": 3,
+     "seed": 45,
+     "file": "foldB_seed3.keras"
+    },
+    {
+     "index": 4,
+     "seed": 46,
+     "file": "foldB_seed4.keras"
+    }
+   ],
+   "scaler": "scaler_FoldB.joblib",
+   "calibrator": "calibrator_FoldB.joblib",
+   "threshold": "threshold_FoldB.joblib",
+   "calibration_fitted": false,
+   "calibration_source": null,
+   "calibration_note": "validation has insufficient positive/negative classes; using uncalibrated mean and threshold 0.5",
+   "train_range": {
+    "start": "2022-04-01",
+    "end": "2025-10-23"
+   },
+   "validation_range": {
+    "start": "2025-10-24",
+    "end": "2026-09-14"
+   },
+   "test_range": {
+    "start": "2023-04-01",
+    "end": "2025-12-31"
+   }
+  }
+ }
+}

@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="th">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta name="description" content="SeaGuard ช่วยทีมดูแลทะเลจัดลำดับพื้นที่เฝ้าระวังความเครียดจากความร้อนของปะการัง">
+  <title>SeaGuard — จากข้อมูลทะเลสู่การตัดสินใจภาคสนาม</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="sg-home">
+  <header class="glass-nav sticky top-0 z-50 transition-all duration-300 border-b border-cyan-500/20 bg-slate-950/80 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="brand flex items-center gap-3 group" aria-label="SeaGuard หน้าแรก">
+        <div class="relative flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-500/20 to-teal-400/10 border border-cyan-400/30 group-hover:border-cyan-400 transition-all">
+          <img src="photo/logo.png" alt="SeaGuard Logo" class="w-12 h-12 object-contain">
+        </div>
+        <div class="flex flex-col">
+          <span class="brand-name font-bold text-xl tracking-tight text-white group-hover:text-cyan-300 transition-colors">SeaGuard</span>
+          <span class="sg-brand-subtitle text-[10px] tracking-widest text-cyan-400/80 uppercase font-medium">Multi-Temporal Satellite AI for Coral Bleaching Forecast</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2" aria-label="เมนูหลัก">
+        <a href="index.html" aria-current="page" class="px-4 py-2 rounded-lg text-sm font-medium text-cyan-300 bg-cyan-500/10 border border-cyan-400/30 transition-all">Home</a>
+        <a href="KohMunNai.html" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Koh Mun Nai</a>
+        <a href="PhiPhiIslands.html" class="px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Phi Phi Islands</a>
+      </nav>
+
+      <button type="button" class="sg-lang-toggle shrink-0" data-lang-toggle aria-label="Switch to English">EN</button>
+      <button type="button" id="mobileNavToggle" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg text-slate-300 hover:text-white hover:bg-white/5 transition-all" aria-expanded="false" aria-controls="mobileNavPanel" aria-label="Toggle navigation menu">
+        <i class="fa-solid fa-bars text-lg" id="mobileNavIcon"></i>
+      </button>
+    </div>
+    <div id="mobileNavPanel" class="md:hidden max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out">
+      <nav class="flex flex-col px-4 sm:px-6 gap-1 pb-4" aria-label="เมนูหลักบนมือถือ">
+        <a href="index.html" aria-current="page" class="px-4 py-2.5 rounded-lg text-sm font-medium text-cyan-300 bg-cyan-500/10 border border-cyan-400/30 transition-all">Home</a>
+        <a href="KohMunNai.html" class="px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Koh Mun Nai</a>
+        <a href="PhiPhiIslands.html" class="px-4 py-2.5 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all">Phi Phi Islands</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="relative z-10">
+    <section class="ocean-scene relative pt-8 pb-12 lg:pt-12 lg:pb-16 caustics-overlay" id="home" aria-labelledby="sg-title">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="sg-hero-panel panel hero-panel glass-card rounded-3xl p-6 sm:p-10 lg:p-12 overflow-hidden relative border border-cyan-500/20 bg-slate-900/60 shadow-2xl">
+          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold tracking-wide uppercase">
+                <span class="w-2 h-2 rounded-full bg-cyan-400" aria-hidden="true"></span>
+                <span>AI เฝ้าระวังปะการัง</span>
+              </div>
+              <h1 id="sg-title" class="text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight leading-tight">
+                <span class="font-semibold">ติดตามความเสี่ยง</span><br>
+                <strong class="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-teal-300">ปะการังฟอกขาว</strong>
+              </h1>
+              <p class="text-slate-300 text-base sm:text-lg leading-relaxed">เลือกเกาะเพื่อดูสถานะ DHW คะแนน AI สำหรับอีก 7 วัน และผลย้อนหลัง</p>
+              <div class="pt-2 flex flex-wrap gap-4 items-center">
+                <a href="#areas" class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-gradient-to-r from-cyan-400 to-teal-400 text-slate-950 hover:shadow-lg hover:shadow-cyan-400/30 transition-all flex items-center gap-2">
+                  <i class="fa-solid fa-compass" aria-hidden="true"></i><span>ดูพื้นที่ติดตาม</span>
+                </a>
+                <a href="#how-it-works" class="px-6 py-3.5 rounded-xl font-semibold text-sm bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 hover:border-cyan-500/40 transition-all flex items-center gap-2">
+                  <i class="fa-solid fa-circle-info text-cyan-400" aria-hidden="true"></i><span>ระบบทำงานอย่างไร</span>
+                </a>
+              </div>
+              <p class="text-slate-400 text-xs">คะแนน AI ไม่ใช่เปอร์เซ็นต์โอกาสฟอกขาว และไม่ใช่ผลยืนยันภาคสนาม</p>
+              <div class="pt-6 border-t border-slate-800/80 grid grid-cols-3 gap-3 sm:gap-4">
+                <div><strong class="block text-lg sm:text-xl font-bold text-cyan-400">2 เกาะ</strong><span class="text-xs text-slate-400">พื้นที่ติดตาม</span></div>
+                <div><strong class="block text-lg sm:text-xl font-bold text-teal-400">7 วัน</strong><span class="text-xs text-slate-400">ขอบเขตผล AI</span></div>
+                <div><strong id="sg-api-status" class="sg-api-status block text-sm sm:text-base font-bold text-cyan-300" role="status">กำลังตรวจสถานะระบบ…</strong><span class="text-xs text-slate-400">สถานะระบบ</span></div>
+              </div>
+            </div>
+            <div class="lg:col-span-5 flex justify-center items-center">
+              <figure class="relative w-full max-w-md">
+                <div class="absolute inset-0 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative aspect-square rounded-2xl overflow-hidden glass-card border border-cyan-400/20 shadow-2xl bg-slate-900/80 p-6">
+                  <img src="photo/map.png" alt="แผนที่ประเทศไทยแสดงตำแหน่งเกาะมันในและเกาะพีพี" class="w-full h-full object-contain">
+                </div>
+                <figcaption class="text-xs text-slate-400 text-center mt-2">พื้นที่ติดตาม: เกาะมันในและเกาะพีพี</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="areas" class="py-12 lg:py-16 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-10">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">เลือกเกาะเพื่อดูผล</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2">เลือกพื้นที่เพื่อดูผลการประเมินแยกตามเกาะ</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          <a href="KohMunNai.html" class="sg-area-card group glass-card rounded-2xl border border-cyan-500/20 bg-slate-900/50 hover:bg-slate-900/80 hover:border-cyan-400/50 transition-all duration-300">
+            <span class="flex items-center justify-between mb-4"><span class="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-400/30 text-cyan-300 text-xs font-semibold uppercase">จังหวัดระยอง</span><i class="fa-solid fa-arrow-right text-slate-400 group-hover:text-cyan-300 transition-all" aria-hidden="true"></i></span>
+            <strong class="text-xl font-bold text-white group-hover:text-cyan-300 transition-colors">เกาะมันใน</strong>
+            <span class="text-slate-400 text-sm mt-2">พื้นที่ติดตามแนวปะการังอ่าวไทย ดูสถานะ DHW และคะแนน AI ล่วงหน้า 7 วัน</span>
+          </a>
+          <a href="PhiPhiIslands.html" class="sg-area-card group glass-card rounded-2xl border border-cyan-500/20 bg-slate-900/50 hover:bg-slate-900/80 hover:border-teal-400/50 transition-all duration-300">
+            <span class="flex items-center justify-between mb-4"><span class="px-3 py-1 rounded-full bg-teal-500/10 border border-teal-400/30 text-teal-300 text-xs font-semibold uppercase">จังหวัดกระบี่</span><i class="fa-solid fa-arrow-right text-slate-400 group-hover:text-teal-300 transition-all" aria-hidden="true"></i></span>
+            <strong class="text-xl font-bold text-white group-hover:text-teal-300 transition-colors">เกาะพีพี</strong>
+            <span class="text-slate-400 text-sm mt-2">พื้นที่ติดตามระบบนิเวศทะเลอันดามัน ดูสถานะ DHW และคะแนน AI ล่วงหน้า 7 วัน</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works" class="py-12 lg:py-16 border-t border-slate-800/60 bg-slate-950/40 scroll-mt-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">SeaGuard ทำงานอย่างไร</h2>
+          <p class="text-slate-400 text-sm sm:text-base mt-2">ข้อมูลย้อนหลัง โมเดล AI และเกณฑ์ DHW ช่วยให้เห็นความเสี่ยงของแต่ละพื้นที่</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="glass-card p-6 rounded-2xl border border-slate-800 bg-slate-900/40">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-300 text-xl mb-4"><i class="fa-solid fa-satellite" aria-hidden="true"></i></div>
+            <h3 class="text-lg font-semibold text-white">1. เตรียมข้อมูลย้อนหลัง</h3>
+            <p class="text-slate-400 text-sm mt-2">ใช้ข้อมูลอุณหภูมิทะเลและแถบสเปกตรัมที่มีวันที่กำกับ พร้อมแสดงวันที่ข้อมูลล่าสุด</p>
+          </article>
+          <article class="glass-card p-6 rounded-2xl border border-slate-800 bg-slate-900/40">
+            <div class="w-12 h-12 rounded-xl bg-teal-500/10 border border-teal-400/30 flex items-center justify-center text-teal-300 text-xl mb-4"><i class="fa-solid fa-brain" aria-hidden="true"></i></div>
+            <h3 class="text-lg font-semibold text-white">2. วิเคราะห์ด้วย AI</h3>
+            <p class="text-slate-400 text-sm mt-2">โมเดลอ่านข้อมูลย้อนหลัง 30 วันเพื่อให้คะแนนว่า DHW วันที่ +7 จะถึง 4 หรือไม่</p>
+          </article>
+          <article class="glass-card p-6 rounded-2xl border border-slate-800 bg-slate-900/40">
+            <div class="w-12 h-12 rounded-xl bg-cyan-500/10 border border-cyan-400/30 flex items-center justify-center text-cyan-300 text-xl mb-4"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+            <h3 class="text-lg font-semibold text-white">3. ดูผลประกอบการตัดสินใจ</h3>
+            <p class="text-slate-400 text-sm mt-2">ดูคะแนน AI ควบคู่ระดับเตือน DHW จากสูตร โดยตรวจวันที่ข้อมูลก่อนนำไปใช้</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="sg-footer"><span>SeaGuard · ติดตามความเสี่ยงปะการังฟอกขาว</span></footer>
+  <script>
+    (async () => {
+      const status = document.getElementById('sg-api-status');
+      try {
+        const healthResponse = await fetch('/api/health');
+        if (!healthResponse.ok) throw new Error('API ไม่พร้อม');
+        const health = await healthResponse.json();
+        status.textContent = health.ai_model_ready ? 'ระบบพร้อม' : 'AI ไม่พร้อม';
+        status.dataset.state = health.ai_model_ready ? 'ready' : 'offline';
+      } catch (error) {
+        status.textContent = 'เชื่อมต่อไม่ได้';
+        status.dataset.state = 'offline';
+      }
+    })();
+  </script>
+  <script>
+    (() => {
+      const btn = document.getElementById('mobileNavToggle');
+      const panel = document.getElementById('mobileNavPanel');
+      const icon = document.getElementById('mobileNavIcon');
+      const setOpen = (open) => {
+        panel.style.maxHeight = open ? `${panel.scrollHeight}px` : '0px';
+        btn.setAttribute('aria-expanded', String(open));
+        icon.classList.toggle('fa-bars', !open);
+        icon.classList.toggle('fa-xmark', open);
+      };
+      btn.addEventListener('click', () => setOpen(btn.getAttribute('aria-expanded') !== 'true'));
+      panel.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('click', e => { if (!btn.contains(e.target) && !panel.contains(e.target)) setOpen(false); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') setOpen(false); });
+      window.addEventListener('resize', () => { if (window.innerWidth >= 768) setOpen(false); });
+    })();
+  </script>
+  <script src="i18n.js"></script>
+</body>
+</html>

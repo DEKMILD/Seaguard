@@ -1,0 +1,144 @@
+:root {
+    --deep-navy: #030c14;
+    --ocean-1: #061d2a;
+    --ocean-2: #0c3e4d;
+    --ocean-3: #155b68;
+    --surface-line: rgba(79, 172, 254, 0.25);
+    --text-light: #f2f8f7;
+    --text-dim: #94a3b8;
+    --teal-band: #092e39;
+    --accent-foam: #00f2fe;
+}
+
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--deep-navy);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+.brand-name {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Glassmorphism utility */
+.glass-card {
+    background: rgba(8, 30, 43, 0.65);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(79, 172, 254, 0.2);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}
+
+.glass-card-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-card-hover:hover {
+    border-color: rgba(0, 242, 254, 0.5);
+    box-shadow: 0 12px 40px 0 rgba(0, 242, 254, 0.15);
+    transform: translateY(-3px);
+}
+
+.glass-nav {
+    background: rgba(3, 12, 20, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* Floating animation */
+@keyframes floatSlow {
+
+    0%,
+    100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+
+    50% {
+        transform: translateY(-12px) rotate(1.5deg);
+    }
+}
+
+.animate-float {
+    animation: floatSlow 6s ease-in-out infinite;
+}
+
+/* Caustics Light Overlay */
+.caustics-overlay {
+    background: radial-gradient(circle at 50% -20%, rgba(0, 242, 254, 0.15), transparent 70%),
+        linear-gradient(180deg, rgba(6, 29, 42, 0.8) 0%, rgba(3, 12, 20, 0.98) 100%);
+}
+
+/* Temperature Slider styling */
+input[type=range] {
+    -webkit-appearance: none;
+    appearance: none;
+    background: transparent;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 10px;
+    cursor: pointer;
+    background: linear-gradient(90deg, #28b81b 0%, #ebfa1c 35%, #f59e0b 70%, #ef4444 100%);
+    border-radius: 999px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    height: 24px;
+    width: 24px;
+    border-radius: 50%;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+    margin-top: -7px;
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.8);
+    border: 2px solid #00f2fe;
+    transition: transform 0.1s ease;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #030c14;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #0c3e4d;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #00f2fe;
+}
+
+/* Home layout from stylehome.css, integrated without duplicating the shared island theme. */
+.sg-home { margin: 0; background: #020617; color: #f1f5f9; }
+.sg-home *, .sg-home *::before, .sg-home *::after { box-sizing: border-box; }
+.sg-home p { line-height: 1.65; }
+.sg-home .sg-hero-panel { background: rgba(15, 23, 42, .6); border-color: rgba(6, 182, 212, .2); }
+.sg-home .sg-area-card { color: inherit; display: flex; flex-direction: column; min-height: 208px; padding: 30px; border-radius: 20px; border-color: rgba(6, 182, 212, .22); background: rgba(15, 23, 42, .5); text-decoration: none; }
+.sg-home .sg-area-card:hover, .sg-home .sg-area-card:focus-visible { transform: translateY(-3px); outline: none; }
+.sg-api-status[data-state="ready"] { color: #5eead4; }
+.sg-api-status[data-state="offline"] { color: #fca5a5; }
+.sg-footer { max-width: 1280px; margin: auto; padding: 22px 32px; border-top: 1px solid rgba(34, 211, 238, .2); color: #94a3b8; font-size: 12px; }
+.sg-lang-toggle { flex-shrink: 0; min-width: 43px; border: 1px solid #477b83; border-radius: 9px; background: #102b34; color: #91e7e1; padding: 7px 11px; font-size: 13px; font-weight: 800; cursor: pointer; }
+.sg-lang-toggle:hover, .sg-lang-toggle:focus-visible { background: #1a4049; outline: 2px solid #79e4df; outline-offset: 2px; }
+@media (max-width: 640px) { .sg-home .sg-area-card { min-height: 190px; padding: 24px; } .sg-footer { padding: 18px 16px; } }
